@@ -1,0 +1,99 @@
+.navbar {
+  margin-top: 40px;
+  z-index: 1;
+  position: absolute!important;
+  white-space: nowrap;
+  right: 120px;
+  justify-content: end;
+}
+
+.navbar-collapse.collapsing {
+  width: 120px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0px 9px 8px 0px rgba(89, 92, 219, 0.1);
+}
+
+.navbar-collapse.collapsing #main-btn {
+  margin: 0!important;
+}
+
+Nav ul li {
+  padding-inline: 12px;
+  font-weight: 600!important;
+}
+
+.navbar-collapse.show {
+  width: 120px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0px 9px 8px 0px rgba(89, 92, 219, 0.1);
+}
+
+.navbar-toggler {
+  border-color: transparent !important;
+  margin-left: auto;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.navbar-collapse.show #main-btn {
+  margin-left: 0!important;
+}
+
+.nav-ul {
+  list-style-type: none;
+}
+
+.navbar-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#nav-secondary {
+  display: grid;
+  background-color: rgba(255, 255, 255, 0.1)!important;
+  height: 32px;
+  font-size: 14px;
+  align-content: center;
+  font-weight: 600;
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3)!important;
+  border-radius: 32px;
+  text-decoration: none;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}
+#main-btn {
+  background-color: #d1fae5!important;
+  display: grid;
+  height: 46px;
+  color: #047857!important;
+  font-size: 14px;
+  font-weight: 600;
+  justify-content: center;
+  border: none;
+  border-radius: 32px;
+  margin-left: 32px;
+  padding: 24px 12px;
+  align-content: center;
+}
+
+.logo {
+  top: 40px;
+    left: 120px;
+    position: absolute;
+    width: 115px;
+    z-index: 1;
+}
+
+@media (min-width: 1200px) {
+  .navbar-expand-xl .navbar-collapse {
+    display: flex!important;
+    flex-basis: auto;
+}
+}
