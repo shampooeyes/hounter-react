@@ -1,9 +1,83 @@
 .featured {
-        width: 100%;
-        margin-inline: 60px;
-        margin-top: 120px;
+    width: 100%;
+    margin-inline: 60px;
+    margin-top: 120px;
+    /* text-align: start; */
 }
 
+h2 {
+    font-family: "Lexend";
+    color: #1b1c57;
+    font-size: 2rem;
+    font-weight: 600;
+    /* white-space:nowrap; */
+}
+
+.display-6 {
+    color: #f59e0b;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+
+.filter-pill {
+    padding: 12px 24px !important;
+    border-radius: 32px !important;
+    background-color: white !important;
+    border: 1px solid #e0e3eb !important;
+    color: #888b97;
+  
+  }
+  
+  .filter-pill:focus {
+    padding: 12px 24px !important;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    border-radius: 32px !important;
+    border: 0px solid white !important;
+    outline: none;
+    background-color: #d1fae5 !important;
+    color: #10b981 !important;
+  }
+
+.filter-pill:focus-visible {
+    border: none !important;
+}
+
+.filter-pill~p {
+    display: none;
+}
+
+.nav-btns {
+    display: flex;
+    height: 52px;
+    width: 52px;
+    border-radius: 26px;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-forward {
+    color: white;
+    background-color: #10b981;
+  }
+  
+  .nav-back {
+    color: #3c4563;
+    background-color: #e0e3eb;
+  }
+
+@media (max-width: 1100px) {
+  .filter-pill:focus~p {
+    display: block;
+    font-size: 14px;
+  }
+
+  .navtag {
+    display: none;
+  }
+}
 
 @media (max-width:1199px) {
     .featured {
@@ -20,7 +94,39 @@
         font-size: 18px;
     }
 
-  .listing img {
-    max-width: 150px;
-  }
+    .listing img {
+        max-width: 150px;
+    }
+
+    .nav-btns {
+        height: 32px;
+        width: 32px;
+    }
+    
+    .feat-row {
+        flex-direction: column;
+        margin-bottom: 0 !important;
+    }
+    
+    .feat-row>* {
+        margin-bottom: 15px !important;
+    }
+
+
+    .filter-pill {
+        padding: 6px 12px!important;
+      }
+    
+      .filter-pill:focus {
+        padding: 6px 12px!important;
+      }
+    
+      .filter-pill:focus ~ p {
+        font-size: 12px;
+        margin-bottom: 0;
+      }
+
+    .navtag {
+        display: none;
+    }
 }

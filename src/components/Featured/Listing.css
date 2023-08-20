@@ -1,13 +1,8 @@
 
-h4 {
-}
-
-h5 {
-}
-
 .list-card {
   display: inline-block;
   margin-top: 50px;
+  padding-inline: 40px;
 }
 
 .listing-title {
@@ -21,11 +16,6 @@ h5 {
   color: #3c4563;
 }
 
-/* .profile-info {
-  position: relative;
-  left: 56px;
-} */
-
 .display-3 {
   color: #0e1735;
   font-size: 18px;
@@ -38,6 +28,8 @@ h5 {
   font-weight: 500;
   color: #68799f;
 }
+
+
 
 @media (max-width:768px) {
 

@@ -25,3 +25,10 @@
         font-size: 13px;
       }
 }
+
+@media (min-width:1200px) {
+    .badge {
+        bottom: 1rem;
+        left: 2rem;
+    }
+}
