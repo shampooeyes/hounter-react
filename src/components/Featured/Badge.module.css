@@ -1,0 +1,27 @@
+.badge {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 3.75rem;
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: #888B97;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.badge-icon {
+    margin-right: 5px;
+    font-size: 16px;
+  }
+
+@media (max-width:768px) {
+    .badge {
+        font-size: 10px;
+        line-height: 3px;
+        margin-top: 135px;
+        padding: 4px 10px;
+    }
+    .badge-icon {
+        font-size: 13px;
+      }
+}

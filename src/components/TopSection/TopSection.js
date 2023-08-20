@@ -2,22 +2,22 @@ import "./TopSection.css";
 
 const TopSection = () => {
     return (
-    <section class="top">
-        <div class="row justify-content-between parent m-0">
-            <div id="search-block" class="col-xl-6 block1 d-flex p-0 ps-5">
-                <div class="infoBlock my-auto mx-auto">
-                    <h1 class="mb-3">
-                        Find The Place To<br />Live <span class="outlined-text">Your Dreams</span><br />Easily Here
+    <section className="top">
+        <div className="row justify-content-between parent m-0">
+            <div id="search-block" className="col-xl-6 block1 d-flex p-0 ps-5">
+                <div className="infoBlock my-auto mx-auto">
+                    <h1 className="mb-3">
+                        Find The Place To<br />Live <span className="outlined-text">Your Dreams</span><br />Easily Here
                     </h1>
 
-                    <p class="lead description mb-4">Everything you need about finding your place to live will
+                    <p className="lead description mb-4">Everything you need about finding your place to live will
                         be<br />here,
                         where
                         it will be easier for you</p>
 
                     <div class="search-input-field">
-                        <span class="me-3" style={{ "color": "#F59E0B;" }}>
-                            <i class="bi bi-geo-alt-fill "></i>
+                        <span className="me-3" style={{ "color": "#F59E0B" }}>
+                            <i className="bi bi-geo-alt-fill "></i>
                         </span>
                         <input type="text" id="search-term" placeholder="Search for the location you want!" />
                         <a href="" className="ml-auto">
