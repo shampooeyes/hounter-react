@@ -5,9 +5,9 @@ const Footer = () => {
         
     <section class="footer">
     <img src={require("../../assets/bottom-left-blur.png")} class="position-absolute"
-        style={{"bottom": "0px", left: "0px", zIndex: "-1",}} alt=""/>
+        style={{"bottom": "0px", left: "0px", zIndex: "-1"}} alt=""/>
     <img src={require("../../assets/bottom-right-blur.png")} class="position-absolute"
-        style={{"bottom": "0px", right: "0px", zIndex: "-1",}} alt=""/>
+        style={{"bottom": "0px", right: "0px", zIndex: "-1"}} alt=""/>
     <div class="row justify-content-between">
         <div class="col-md-4 col-sm-4 text-start">
 
