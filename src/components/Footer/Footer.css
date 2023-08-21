@@ -1,0 +1,38 @@
+.footer {
+    position: relative;
+    height: 100%;
+    padding: 40px 120px;
+}
+
+.footer-links {
+    display: block;
+    font-size: 14px;
+    color: #888B97;
+    font-weight: 400;
+    margin-bottom: 18px;
+}
+
+.footer-links:hover {
+    text-decoration: underline;
+
+}
+
+.footer .bi {
+    color: #3C4563;
+}
+
+@media (max-width:768px) {
+
+    .footer {
+        padding: 40px 40px;
+    }
+
+    .footer-links {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+
+    .footer img {
+        max-width: 100%;
+    }
+}

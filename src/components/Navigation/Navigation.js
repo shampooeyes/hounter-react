@@ -1,7 +1,12 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 import './Navigation.css';
 
-const Navigation = () => {
+const Navigation = (props) => {
+    const toCRUD = () => {
+        props.navigation.navigate("CRUD");
+    };
+
+
     return (
         <>
             <Navbar collapseOnSelect expand="lg" className="navbar">
@@ -13,7 +18,7 @@ const Navigation = () => {
                                 <Nav.Link href="#features" id="nav-secondary" className="mx-2 px-3">About us</Nav.Link>
                                 <Nav.Link href="#pricing" id="nav-secondary" className="mx-2 px-3">Article</Nav.Link>
                                 <Nav.Link href="#pricing1" id="nav-secondary" className="mx-2 px-3">Property</Nav.Link>
-                                <Nav.Link href="#pricing2" id="main-btn" className="ml-2 px-3">Sign Up</Nav.Link>
+                                <Nav.Link href="#pricing2" id="main-btn" onClick={toCRUD} className="ml-2 px-3">Sign Up</Nav.Link>
                             </ul>
                         </Nav>
                     </Navbar.Collapse>

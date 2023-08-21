@@ -32,3 +32,10 @@
         left: 2rem;
     }
 }
+
+
+@media (min-width:1500px) {
+    .badge {
+        left:6rem;
+    }
+}

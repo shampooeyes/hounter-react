@@ -109,6 +109,9 @@ h5 {
   }
 
 @media (max-width: 1199px) {
+    .top {
+        padding-top: 70px;
+    }
     .block1 {
         height: 500px;
       }

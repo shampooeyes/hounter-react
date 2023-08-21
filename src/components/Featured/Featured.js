@@ -1,62 +1,35 @@
 import Listing from "./Listing";
+import { useEffect, useState } from "react";
 import './Featured.css';
 
 const Featured = () => {
     let currentTab = "home";
-    const listings = {
-        "home": [
-            {
-                "title": "Downtown",
-                "price": "12.000.000",
-                "owner": "Jack Williams",
-                "location": "Toronto, Ontario",
-                "badge": "popular",
-                "imageUrl": "../../assets/home-5.png",
-                "avatarUrl": "../../avatar-1.png"
-            },
-            {
-                "title": "Woodlandside",
-                "price": "22.000.000",
-                "owner": "Robert Fox",
-                "location": "San Jose, South Dakota",
-                "badge": "bestDeals",
-                "imageUrl": "../../assets/home-5.png",
-                "avatarUrl": "../../assets/avatar-2.png"
-            },
-            {
-                "title": "The Old Lighthouse",
-                "price": "44.000.000",
-                "owner": "Ronald Richards",
-                "location": "Santa Ana, Illinois",
-                "badge": "newHouse",
-                "imageUrl": "../../assets/home-5.png",
-                "avatarUrl": "../../assets/avatar-3.png"
-            }
-        ],
-        "villa": [],
-        "apartment": []
-    };
-    const getListings = (tab) => {
-        let currentListings = listings[tab];
-        return currentListings.map((listing) => {
-            return <Listing
-                type={listing["badge"]}
-                avatar={require(`${listing["avatarUrl"]}`)}
-                title={listing["title"]}
-                price={listing["price"]}
-                location={listing["location"]}
-                name={listing["owner"]}
-                imageUrl={require(`${listing["imageUrl"]}`)} />
+    const [activeListings, setActiveListings] = useState([]);
 
+    useEffect(() => {
+        fetch('https://64e25700ab0037358818efc3.mockapi.io/listings').then(response => {
+            response.json().then((json) => {
+
+                setActiveListings( json.map((listing) => {
+                    return <Listing
+                        type={listing["badgeType"]}
+                        avatar={`${listing["avatarUrl"]}`}
+                        title={listing["title"]}
+                        price={listing["price"]}
+                        location={listing["location"]}
+                        name={listing["owner"]}
+                        imageUrl={`${listing["imageUrl"]}`} 
+                        key={listing['title']}/>
+        
+                }));
+            });
         });
-    };
-
-    // let activeListings = getListings(currentTab);
+    }, []);
 
     return (
         <div className="d-flex">
             <section className="featured">
-                <div class="display-6 mb-3">--- Our Recommendations</div>
+                <div class="display-6 mb-3 text-start">--- Our Recommendations</div>
                 <div class="feat-row d-flex justify-content-between align-items-center mb-5">
                     <h2 class="d-flex m-0">Featured House</h2>
                     <div class="d-flex align-items-center">
@@ -99,7 +72,7 @@ const Featured = () => {
                 <div>
 
                         <div class="row d-flex">
-                            {/* {activeListings} */}
+                            {activeListings}
                         </div>
                 </div>
             </section>

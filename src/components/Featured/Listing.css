@@ -5,6 +5,12 @@
   padding-inline: 40px;
 }
 
+h3 {
+  font-size: 24px;
+  font-weight: 500;
+  color: #0e1735;
+}
+
 .listing-title {
   margin-top: 24px;
   margin-bottom: 14px;
@@ -36,6 +42,10 @@
   .list-card {
     margin-top: 30px;
     margin-right: 20px;
+  }
+
+  .imgLarge {
+    max-width: 150px;
   }
 
   .listing-title {
