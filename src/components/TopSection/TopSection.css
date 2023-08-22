@@ -36,6 +36,12 @@ h5 {
     line-height: 28px;
 }
 
+.parent {
+    width: 100%;
+    overflow: hidden;
+}
+  
+
 .search-input-field {
     display: flex;
     height: 56px;

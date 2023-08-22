@@ -3,13 +3,13 @@ import './Navigation.css';
 
 const Navigation = (props) => {
     const toCRUD = () => {
-        props.navigation.navigate("CRUD");
+        props.navigation.navigate("Manage Data");
     };
 
 
     return (
         <>
-            <Navbar collapseOnSelect expand="lg" className="navbar">
+            <Navbar collapseOnSelect expand="lg" className="myNavbar">
                 <Container>
                     <Navbar.Toggle className="navbar-toggler" aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">

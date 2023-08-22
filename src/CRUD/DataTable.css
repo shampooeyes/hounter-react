@@ -1,0 +1,30 @@
+.text-field {
+    display: flex;
+    height: 56px;
+    border: 1px solid #e0e3eb;
+    align-items: center;
+    justify-content: start;
+    padding-left: 27px;
+    border-radius: 32px;
+}
+
+.dataGrid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+}
+
+.center {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.addBtn {
+    margin-top: 30px;
+    width: 200px;
+}

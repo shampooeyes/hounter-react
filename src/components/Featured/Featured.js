@@ -1,12 +1,14 @@
 import Listing from "./Listing";
 import { useEffect, useState } from "react";
 import './Featured.css';
+import { useIsFocused } from '@react-navigation/native'
 
 const Featured = () => {
-    let currentTab = "home";
+const isFocused = useIsFocused()
     const [activeListings, setActiveListings] = useState([]);
 
     useEffect(() => {
+        if (isFocused)
         fetch('https://64e25700ab0037358818efc3.mockapi.io/listings').then(response => {
             response.json().then((json) => {
 
@@ -24,7 +26,7 @@ const Featured = () => {
                 }));
             });
         });
-    }, []);
+    }, [isFocused]);
 
     return (
         <div className="d-flex">

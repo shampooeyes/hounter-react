@@ -11,17 +11,17 @@ const Badge = (props) => {
         badgeBgColor = "#FEE2E2";
         text = "Popular";
         icon = "bi bi-fire badge-icon";
-    } else if (props.type === "newHouse") {
-        badgeColor = "#1D4ED8";
-        badgeBgColor = "#DBEAFE";
-        text = "New House"
-        icon = "bi bi-house-fill badge-icon";
     } else if (props.type === "bestDeals") {
         badgeColor = "#047857";
         badgeBgColor = "#D1FAE5";
         text = "Best Deals";
         icon = "bi bi-wallet2 badge-icon";
-    }
+    } else {
+        badgeColor = "#1D4ED8";
+        badgeBgColor = "#DBEAFE";
+        text = "New House"
+        icon = "bi bi-house-fill badge-icon";
+    } 
 
     const style = () => {
         return {
