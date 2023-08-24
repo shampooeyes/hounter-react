@@ -1,4 +1,6 @@
 import './App.css';
+import { initializeApp } from "firebase/app";
+import { getStorage } from "firebase/storage";
 import Navigation from './components/Navigation/Navigation';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TopSection from './components/TopSection/TopSection';
@@ -15,6 +17,7 @@ import CRUDNavigation from './CRUD/CRUDNavigation';
 const Stack = createNativeStackNavigator();
 
 function App() {
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">

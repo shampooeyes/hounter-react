@@ -83,6 +83,11 @@ Nav ul li {
   align-content: center;
 }
 
+#main-btn:hover {
+  background-color: #047857!important;
+  color: white!important;
+}
+
 .logo {
   top: 40px;
     left: 120px;
@@ -96,4 +101,19 @@ Nav ul li {
     display: flex!important;
     flex-basis: auto;
 }
+}
+
+@media (max-width:768px) {
+  
+  .logo {
+    left: 20px;
+  }
+
+  .myNavbar {
+    right: 0px;
+  }
+
+  .container {
+    margin-right: 0px!important;
+  }
 }

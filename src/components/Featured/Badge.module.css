@@ -7,6 +7,7 @@
     color: #888B97;
     font-size: 14px;
     font-weight: 500;
+    text-wrap: nowrap;
 }
 
 .badge-icon {
@@ -17,12 +18,14 @@
 @media (max-width:768px) {
     .badge {
         font-size: 10px;
+        left: 1rem;
         line-height: 3px;
         margin-top: 135px;
-        padding: 4px 10px;
+        padding: 4px 12px;
     }
     .badge-icon {
         font-size: 13px;
+        padding-right: 10px!important;
       }
 }
 

@@ -2,6 +2,8 @@ import ReactDOM from "react-dom";
 import Modal from './Modal/Modal';
 import './NewItem.css';
 import { useEffect, useState } from "react";
+import storage from '../index';
+import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
 const NewItem = (props) => {
     const [title, setTitle] = useState("");
@@ -9,8 +11,12 @@ const NewItem = (props) => {
     const [location, setLocation] = useState("");
     const [owner, setOwner] = useState("");
     const [badgeType, setBadgeType] = useState("");
+    const [image, setImage] = useState("");
     const [imageUrl, setImageUrl] = useState("");
+    const [avatar, setAvatar] = useState("");
     const [avatarUrl, setAvatarUrl] = useState("");
+    const [isLoading, setLoading] = useState(false);
+
 
     const onTitleChange = (event) => {
         setTitle(event.target.value);
@@ -27,12 +33,6 @@ const NewItem = (props) => {
     const onBadgeTypeChange = (event) => {
         setBadgeType(event.target.value);
     };
-    const onImageUrlChange = (event) => {
-        setImageUrl(event.target.value);
-    };
-    const onAvatarUrlChange = (event) => {
-        setAvatarUrl(event.target.value);
-    };
 
     useEffect(() => {
         if (!props.isNew) {
@@ -47,13 +47,41 @@ const NewItem = (props) => {
         }
     }, []);
 
+    const updateImage = (file) => {
+        setImage(file);
+        setImageUrl(file !== "" ? URL.createObjectURL(file) : "");
+
+    }
+
+    const updateOwnerImage = (file) => {
+        setAvatar(file);
+        setAvatarUrl(file !== "" ? URL.createObjectURL(file) : "");
+
+    }
 
     const onDelete = () => {
         props.onDelete(props.data['id']);
         props.exit();
     };
 
-    const onSave = () => {
+    const onSave = async () => {
+        setLoading(true);
+        let imageDownloadUrl;
+        let avatarDownloadUrl;
+        if (image !== "") {
+            const imageRef = ref(storage, `${image.name}`);
+            await uploadBytesResumable(imageRef, image).then(async (snapshot) => {
+                const url = await getDownloadURL(snapshot.ref);
+                imageDownloadUrl = url;
+            });
+        }
+
+        if (avatar !== "") {
+            const avatarRef = ref(storage, `${avatar.name}`);
+            await uploadBytesResumable(avatarRef, avatar).then(async (snapshot) => { avatarDownloadUrl = await getDownloadURL(snapshot.ref) });
+        }
+
+
         const data = {
             "id": props.data['id'],
             "title": title,
@@ -61,8 +89,8 @@ const NewItem = (props) => {
             "owner": owner,
             "location": location,
             "badgeType": badgeType,
-            "imageUrl": imageUrl,
-            "avatarUrl": avatarUrl
+            "imageUrl": imageDownloadUrl,
+            "avatarUrl": avatarDownloadUrl
         };
 
         const requestOptions = {
@@ -75,7 +103,24 @@ const NewItem = (props) => {
         props.exit();
     };
 
-    const onAdd = () => {
+    const onAdd = async () => {
+        setLoading(true);
+        let imageDownloadUrl;
+        let avatarDownloadUrl;
+
+        if (image !== "") {
+            const imageRef = ref(storage, `${image.name}`);
+            await uploadBytesResumable(imageRef, image).then(async (snapshot) => {
+                const url = await getDownloadURL(snapshot.ref);
+                imageDownloadUrl = url;
+            });
+        }
+
+        if (avatar !== "") {
+            const avatarRef = ref(storage, `${avatar.name}`);
+            await uploadBytesResumable(avatarRef, avatar).then(async (snapshot) => { avatarDownloadUrl = await getDownloadURL(snapshot.ref) });
+        }
+
         const data = {
             "id": Math.random().toString(),
             "title": title,
@@ -83,8 +128,8 @@ const NewItem = (props) => {
             "owner": owner,
             "location": location,
             "badgeType": badgeType,
-            "imageUrl": imageUrl,
-            "avatarUrl": avatarUrl
+            "imageUrl": imageDownloadUrl,
+            "avatarUrl": avatarDownloadUrl
         };
 
         const requestOptions = {
@@ -103,12 +148,12 @@ const NewItem = (props) => {
             <InputField label="Price" value={price} onChange={onPriceChange} />
             <InputField label="Location" value={location} onChange={onLocationChange} />
             <InputField label="Owner" value={owner} onChange={onOwnerChange} />
-            <InputField label="Badge Type" value={badgeType} onChange={onBadgeTypeChange} />
-            <InputField label="Image Url" value={imageUrl} onChange={onImageUrlChange} />
-            <InputField label="Owner Image Url" value={avatarUrl} onChange={onAvatarUrlChange} />
+            <InputField label="Badge Type" value={badgeType} onChange={onBadgeTypeChange} placeholder="popular / newHouse / bestDeals" />
+            <UploadButton label="Image" setFile={updateImage} imageUrl={imageUrl} />
+            <UploadButton label="Owner Image" setFile={updateOwnerImage} imageUrl={avatarUrl} />
 
-            {!props.isNew && <EditButtons onSave={onSave} onDelete={onDelete} />}
-            {props.isNew && <NewButton onAdd={onAdd}/>}
+            {!props.isNew && <EditButtons onSave={onSave} onDelete={onDelete} isLoading={isLoading} />}
+            {props.isNew && <NewButton onAdd={onAdd} isLoading={isLoading} />}
 
 
         </Modal>, document.getElementById("backdrop-root"));
@@ -120,7 +165,10 @@ const EditButtons = (props) => {
     return (
         <div className="d-flex justify-content-end mt-5">
             <button className="formButtons formDeleteButton" onClick={props.onDelete}>Delete</button>
-            <button className="formButtons" onClick={props.onSave}>Save</button>
+            <button className="formButtons" onClick={props.onSave}>
+                {!props.isLoading && <span>Save</span>}
+                {props.isLoading && <div className="loader" />}
+            </button>
         </div>
     );
 };
@@ -128,17 +176,60 @@ const EditButtons = (props) => {
 const NewButton = (props) => {
     return (
         <div className="d-flex justify-content-end mt-5">
-            <button className="formButtons" onClick={props.onAdd}>Add</button>
+            <button className="formButtons" onClick={props.onAdd}>
+                {!props.isLoading && <span>Add</span>}
+                {props.isLoading && <div className="loader" />}
+            </button>
+        </div>
+    );
+};
+
+const UploadButton = (props) => {
+    const onChange = (event) => {
+        props.setFile(event.target.files[0]);
+    };
+
+    const onRemoveImage = () => {
+        props.setFile("");
+    };
+
+    if (props.imageUrl !== "") {
+        // let imageUrl = URL.createObjectURL(props.imageUrl);
+        return (
+            <div className="inputRow">
+                <label className="inputLabel">{props.label}</label>
+                <div >
+                    <span>
+                        <img src={props.imageUrl} height={40} />
+                    </span>
+                    <span className="ms-3">
+                        <button className="removeIcon" onClick={onRemoveImage}>
+                            <i className="bi bi-x" />
+                        </button>
+                    </span>
+                </div>
+            </div>);
+    }
+
+
+    return (
+        <div className="inputRow">
+            <label className="inputLabel">{props.label}</label>
+            <div >
+                <label className="uploadBtn">
+                    <input type="file" onChange={onChange} />
+                    Upload Image</label>
+            </div>
         </div>
     );
 };
 
 const InputField = (props) => {
     return (
-        <div className="d-flex align-items-center justify-content-between mx-5 my-3">
+        <div className="inputRow">
             <label className="inputLabel">{props.label}</label>
             <div class="input-field">
-                <input type="text" id="search-term" onChange={props.onChange} defaultValue={props.value} />
+                <input type="text" id="search-term" onChange={props.onChange} defaultValue={props.value} placeholder={props.placeholder} />
             </div>
         </div>
     );

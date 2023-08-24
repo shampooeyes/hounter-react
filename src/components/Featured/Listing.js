@@ -12,7 +12,7 @@ const Listing = (props) => {
                 <h3 class="listing-title">{props.title}</h3>
                 <div class="display-4 mb-3">$ {props.price}</div>
                 <div className='d-flex'>
-                    <img src={props.avatar} className='me-2' alt=""  />
+                    <img src={props.avatar} className='avatar me-2' alt="" height={40} width={40} />
                     <div className="profile-info d-inline" >
                         <span class="display-3">{props.name}</span>
                         <span class="display-5 d-block">{props.location}</span>

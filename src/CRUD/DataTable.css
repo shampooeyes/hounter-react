@@ -28,3 +28,9 @@
     margin-top: 30px;
     width: 200px;
 }
+
+@media (max-width:768px) {
+    .dataGrid {
+    width: 100%;
+    }
+}
